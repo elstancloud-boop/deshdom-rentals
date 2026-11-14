@@ -1,0 +1,23 @@
+# Render Blueprint: free-tier demo. SQLite lives on the instance disk, so data resets on each deploy/restart.
+# For production, add a persistent disk (paid plan) mounted at /var/data and set DATABASE_PATH=/var/data/deshdom.db, or move to Postgres.
+services:
+  - type: web
+    name: deshdom-rentals
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start:render
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20.20.2
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: admin@deshdom.test
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: DATABASE_PATH
+        value: ./data/deshdom.db
+      - key: APP_URL
+        sync: false

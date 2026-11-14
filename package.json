@@ -1,0 +1,38 @@
+{
+  "name": "rentora",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p ${PORT:-3000}",
+    "db:seed": "tsx --env-file=.env.local src/db/seed.ts",
+    "typecheck": "tsc --noEmit",
+    "start:render": "tsx src/db/seed.ts --if-empty && next start -p ${PORT:-10000}"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.11.1",
+    "drizzle-orm": "^0.45.4",
+    "jose": "^6.2.17",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1",
+    "stripe": "^23.1.0",
+    "zod": "^4.6.7",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/bcryptjs": "^2.4.6",
+    "tailwindcss": "^4.3.5",
+    "@tailwindcss/postcss": "^4.3.5",
+    "postcss": "^8.5.32"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}
