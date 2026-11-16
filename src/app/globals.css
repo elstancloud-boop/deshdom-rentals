@@ -7,8 +7,8 @@
   --color-line: #d9dedc;
   --color-bg: #eceee9;
   --color-card: #ffffff;
-  --color-volt: #3d3bf3;
-  --color-volt-dark: #2826c4;
+  --color-volt: #d91e8c;
+  --color-volt-dark: #a8126d;
   --color-tag: #ffd23f;
   --color-ok: #0f7a4d;
   --color-warn: #b45309;
@@ -20,7 +20,7 @@
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--color-bg); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+body { background: var(--color-bg) fixed; background-image: radial-gradient(60rem 40rem at 5% -5%, #ffb3d9 0, transparent 60%), radial-gradient(50rem 40rem at 100% 0%, #ffd9a0 0, transparent 55%), radial-gradient(55rem 45rem at 90% 55%, #c9b6ff 0, transparent 60%), radial-gradient(50rem 40rem at 0% 70%, #aef0e4 0, transparent 60%), radial-gradient(45rem 35rem at 50% 105%, #ffe58a 0, transparent 60%); background-attachment: fixed; color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 :focus-visible { outline: 3px solid var(--color-volt); outline-offset: 2px; border-radius: 6px; }
 ::selection { background: var(--color-tag); color: var(--color-ink); }
 
@@ -41,7 +41,7 @@ body { background: var(--color-bg); color: var(--color-ink); font-family: var(--
 .btn-sm { padding: .45rem .9rem; font-size: .85rem; }
 
 .field { width: 100%; background: #fff; border: 1.5px solid var(--color-line); border-radius: 12px; padding: .75rem .9rem; transition: border-color .15s, box-shadow .15s; }
-.field:focus { outline: none; border-color: var(--color-volt); box-shadow: 0 0 0 4px rgb(61 59 243 / .15); }
+.field:focus { outline: none; border-color: var(--color-volt); box-shadow: 0 0 0 4px rgb(217 30 140 / .18); }
 label.lbl { display: block; font-size: .8rem; font-weight: 600; margin-bottom: .35rem; color: var(--color-ink-2); }
 
 .card { background: var(--color-card); border-radius: 20px; border: 1px solid var(--color-line); }

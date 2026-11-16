@@ -10,7 +10,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.APP_URL ?? "http://localhost:3000"),
   title: { default: "Deshdom Rentals. Rent by the day", template: "%s · Deshdom Rentals" },
-  description: "Rent cameras, audio, outdoor, event and workshop gear by the day in Wigan and Greater Manchester. Instant availability, free cancellation, deposits refunded on return.",
+  description: "Hire event decor, backdrops, neon signs, chairs, tableware and party accessories in Wigan and Greater Manchester. Instant availability, free cancellation, deposits refunded on return.",
   openGraph: { title: "Deshdom Rentals. Rent by the day", type: "website" },
 };
 export const viewport: Viewport = { themeColor: "#eceee9", width: "device-width", initialScale: 1 };
