@@ -5,34 +5,30 @@ import { addDays, today } from "../lib/format";
 import { rentalDays, unitPrice, totals } from "../lib/pricing";
 import { eq } from "drizzle-orm";
 
-const cats = [
-  { slug: "camera-video", name: "Camera & video", blurb: "Bodies, lenses, gimbals and lights for shoots of any size." },
-  { slug: "audio-dj", name: "Audio & DJ", blurb: "PA, decks and mics that make rooms sound right." },
-  { slug: "outdoor", name: "Outdoor & camping", blurb: "Tents, packs and kit for the weekend you keep postponing." },
-  { slug: "events", name: "Events & party", blurb: "Projectors, lighting and furniture, set up for one night." },
-  { slug: "tools", name: "Tools & workshop", blurb: "Pro-grade tools for the job, without owning them." },
-];
+const cats = [{"slug": "backdrops-arches", "name": "Backdrops & arches", "blurb": "Flower walls, arches and shimmer panels that make the photo."}, {"slug": "lighting-neon", "name": "Lighting & neon", "blurb": "Neon signs, marquee letters and fairy lights for after dark."}, {"slug": "tables-seating", "name": "Tables & seating", "blurb": "Chairs, covers and tables dressed for the guest list."}, {"slug": "tableware-centrepieces", "name": "Tableware & centrepieces", "blurb": "Chargers, candelabras and florals for every table."}, {"slug": "party-extras", "name": "Party extras", "blurb": "Sweet carts, red carpets and finishing touches."}];
 const P = (c: string, name: string, brand: string, daily: number, weekly: number | null, deposit: number, stock: number, summary: string, specs: string[][], featured = false) =>
   ({ c, name, brand, daily, weekly, deposit, stock, summary, specs, featured });
 const prods = [
-  P("camera-video", "Sony A7 IV Mirrorless Body", "Sony", 85, 380, 600, 3, "33MP full-frame hybrid shooter with 4K60 and reliable autofocus.", [["Sensor", "33MP full-frame BSI"], ["Video", "4K 60p 10-bit"], ["Battery", "2 × NP-FZ100 included"], ["Card slots", "CFexpress A / SD"]], true),
-  P("camera-video", "Canon RF 24-70mm f/2.8L", "Canon", 45, 200, 350, 2, "The workhorse standard zoom for weddings, events and interviews.", [["Mount", "Canon RF"], ["Aperture", "f/2.8 constant"], ["Weight", "900 g"]]),
-  P("camera-video", "DJI RS 4 Pro Gimbal", "DJI", 55, 240, 400, 2, "Stabilised handheld rig for smooth cinema moves.", [["Payload", "4.5 kg"], ["Battery", "Up to 12 h"], ["Includes", "Case, handle, 2 batteries"]], true),
-  P("camera-video", "Aputure 300x LED Light Kit", "Aputure", 60, 260, 300, 2, "Bi-colour 300W light with softbox, stand and hard case.", [["Output", "300W bi-colour"], ["Control", "App + DMX"]]),
-  P("audio-dj", "Pioneer DJ Controller DDJ-FLX10", "Pioneer DJ", 70, 300, 350, 2, "4-channel controller that works with Rekordbox and Serato.", [["Channels", "4"], ["Software", "Rekordbox / Serato"]], true),
-  P("audio-dj", "JBL EON ONE Pro PA System", "JBL", 80, 340, 400, 3, "All-in-one battery PA for 150 guests. Sounds big, packs small.", [["Coverage", "Up to 150 people"], ["Battery", "6 h"], ["Mixer", "7-channel built-in"]]),
-  P("audio-dj", "Shure SM58 Wireless Mic Set", "Shure", 30, 120, 150, 6, "Two handheld wireless mics with a receiver. Vocals, speeches, karaoke.", [["Mics", "2 handheld"], ["Range", "Up to 60 m"]]),
-  P("outdoor", "4-Person Backpacking Tent", "MSR", 35, 150, 200, 4, "Freestanding, 3-season, packs to 3 kg. Sets up in under five minutes.", [["Sleeps", "4"], ["Weight", "3.1 kg"], ["Seasons", "3"]], true),
-  P("outdoor", "65L Trekking Pack", "Osprey", 20, 85, 100, 5, "Adjustable back panel with rain cover. Fits most torsos.", [["Volume", "65 L"], ["Frame", "Anti-gravity suspension"]]),
-  P("outdoor", "Roof-Top Cargo Box 450L", "Thule", 25, 110, 150, 3, "Aerodynamic, lockable, fits most roof bars.", [["Volume", "450 L"], ["Lock", "Dual-side opening"]]),
-  P("outdoor", "Kayak (Tandem, Inflatable)", "Sea Eagle", 50, 220, 250, 3, "Two-person inflatable with paddles, pump and PFDs.", [["Capacity", "2 adults"], ["Length", "3.9 m"], ["Includes", "Paddles, pump, PFDs"]]),
-  P("events", "Full HD Projector 5000 lm", "Epson", 65, 280, 300, 3, "Bright enough for daytime. HDMI and wireless casting.", [["Brightness", "5000 lumens"], ["Resolution", "1920 × 1080"]]),
-  P("events", "120″ Tripod Projection Screen", "Elite", 25, 100, 100, 3, "Fast-fold screen for backyards, offices and halls.", [["Size", "120″ 16:9"], ["Setup", "Under 2 min"]]),
-  P("events", "Folding Banquet Table (6 ft) × 4", "Lifetime", 28, 120, 80, 8, "Set of four sturdy folding tables. Seats 6–8 each.", [["Length", "1.8 m"], ["Qty per rental", "4 tables per unit"]]),
-  P("events", "Party String Light Pack (100 m)", "Brightown", 18, 70, 50, 6, "Warm-white outdoor string lights with 8 modes.", [["Length", "100 m"], ["Rating", "IP65"]]),
-  P("tools", "Bosch Rotary Hammer SDS-Plus", "Bosch", 40, 160, 150, 3, "Cordless, for concrete and masonry. Two batteries, charger, bits.", [["Voltage", "18V"], ["Energy", "3.4 J"]]),
-  P("tools", "Pressure Washer 3000 PSI", "Karcher", 45, 180, 120, 3, "Brings decks and driveways back. Hose and four nozzles.", [["Pressure", "3000 PSI"], ["Flow", "2.4 GPM"]]),
-  P("tools", "Tile Wet Saw 10″", "DeWalt", 50, 210, 200, 2, "Clean cuts through porcelain and stone. Stand included.", [["Blade", "10 in"], ["Rip", "24 in"]]),
+  P("backdrops-arches", "Pink & White Rose Flower Wall 8x8 ft", "Deshdom Decor", 65, 260, 100, 3, "Lush artificial rose wall in blush, white and pink. The photo backdrop everyone queues for.", [["Size", "8 × 8 ft (4 panels)"], ["Style", "Blush, white, pink roses"], ["Setup", "Free-standing frame included"]], true),
+  P("backdrops-arches", "Gold Hexagon Arch Backdrop Set", "Deshdom Decor", 45, 180, 80, 3, "Three gold hexagon frames that stand alone or hold drapes, flowers and balloons.", [["Pieces", "3 hexagon frames"], ["Height", "Up to 7 ft"], ["Finish", "Brushed gold metal"]], true),
+  P("backdrops-arches", "Round Circle Arch Trio with Drapes", "Deshdom Decor", 40, 160, 70, 4, "Three white circle arches with chiffon drapes. Soft, modern and easy to style.", [["Pieces", "3 circles + drapes"], ["Colours", "White frame, ivory chiffon"]]),
+  P("backdrops-arches", "Rose Gold Sequin Shimmer Wall", "Deshdom Decor", 55, 220, 90, 3, "Sparkling rose gold sequin panels that catch every light. Ideal for dessert tables and selfies.", [["Size", "8 × 8 ft"], ["Panels", "12 sequin tiles + frame"]], true),
+  P("backdrops-arches", "Greenery Hedge Wall Panels (set of 10)", "Deshdom Decor", 50, 200, 80, 3, "Ten realistic boxwood hedge panels to build a garden wall or neon sign backdrop.", [["Panels", "10 × 50 cm"], ["Covers", "Approx 2.5 m²"]]),
+  P("lighting-neon", "Mr & Mrs Neon Sign (Warm White)", "Deshdom Decor", 40, 160, 60, 3, "Statement LED neon sign that glows warm white. Dimmable, plug-in, wall or table mount.", [["Width", "80 cm"], ["Power", "Plug-in, dimmable"]], true),
+  P("lighting-neon", "Light-up Marquee Letters LOVE (4 ft)", "Deshdom Decor", 60, 240, 100, 2, "Giant 4 ft marquee letters with warm bulbs. Spell LOVE and stand them anywhere.", [["Height", "4 ft each"], ["Letters", "L-O-V-E"], ["Power", "Mains"]], true),
+  P("lighting-neon", "Fairy Light Curtain Backdrop 3 x 3 m", "Deshdom Decor", 25, 100, 40, 5, "Warm-white twinkling curtain that turns any wall into a glittering backdrop.", [["Size", "3 × 3 m"], ["LEDs", "300 warm white"]]),
+  P("lighting-neon", "Colour Uplighters (set of 8)", "Deshdom Decor", 60, 240, 120, 3, "Eight battery LED uplighters in any colour. Wash walls and marquees in pink, purple or gold.", [["Lights", "8 wireless"], ["Battery", "Up to 12 hours"], ["Control", "Remote"]]),
+  P("tables-seating", "Gold Chiavari Chairs (set of 10)", "Deshdom Decor", 60, 240, 100, 4, "Classic gold chiavari chairs with ivory cushions. Elegant for weddings and banquets.", [["Qty", "10 chairs"], ["Finish", "Gold, ivory pad"]], true),
+  P("tables-seating", "Chair Covers & Satin Sashes (set of 20)", "Deshdom Decor", 40, 160, 60, 6, "White stretch covers with satin sashes in your colour. Dress 20 chairs in minutes.", [["Qty", "20 sets"], ["Sash colours", "Blush, gold, royal blue, emerald, red"]]),
+  P("tables-seating", "Round Table 5 ft with Floor-length Linen", "Deshdom Decor", 18, 72, 30, 12, "Seats 8–10 guests. Comes with a floor-length tablecloth in your choice of colour.", [["Diameter", "5 ft"], ["Seats", "8–10"], ["Linen", "Floor-length"]]),
+  P("tables-seating", "Velvet Throne Sofa with Gold Frame", "Deshdom Decor", 55, 220, 120, 2, "Statement sofa in blush velvet with gold legs. The couple's seat or a photo prop.", [["Seats", "2–3"], ["Colour", "Blush velvet"]]),
+  P("tableware-centrepieces", "Gold Charger Plates (set of 20)", "Deshdom Decor", 20, 80, 40, 5, "Beaded gold chargers that lift every place setting.", [["Qty", "20"], ["Diameter", "33 cm"]]),
+  P("tableware-centrepieces", "Crystal Candelabra Centrepieces (set of 5)", "Deshdom Decor", 45, 180, 80, 3, "Five tall acrylic crystal candelabras for dramatic, sparkling tables.", [["Qty", "5"], ["Height", "75 cm"]], true),
+  P("tableware-centrepieces", "Tall Floral Centrepiece Stands (set of 6)", "Deshdom Decor", 50, 200, 90, 3, "Six tall trumpet stands with artificial floral arrangements in pink and white.", [["Qty", "6"], ["Height", "80 cm"]]),
+  P("tableware-centrepieces", "Tiered Cake & Dessert Stand Set", "Deshdom Decor", 25, 100, 40, 4, "Three-tier gold stand plus cake plate and cupcake tower.", [["Pieces", "3 stands"], ["Holds", "Up to 60 cupcakes"]]),
+  P("party-extras", "Candy Cart & Sweet Table Set", "Deshdom Decor", 35, 140, 60, 3, "Pastel sweet cart with glass jars, scoops and bags. Fill it and watch it vanish.", [["Jars", "12 glass jars"], ["Includes", "Scoops, tongs, bags"]]),
+  P("party-extras", "Red Carpet & Stanchion Set", "Deshdom Decor", 40, 160, 70, 3, "6 m red carpet with four gold stanchions and velvet ropes. Welcome guests like stars.", [["Carpet", "6 m × 1.2 m"], ["Stanchions", "4 gold"]], true),
+  P("party-extras", "Pink Prosecco Wall Display Board", "Deshdom Decor", 40, 160, 60, 3, "Pink board with 48 holders for glasses, drinks or doughnuts. Pure party.", [["Holders", "48"], ["Size", "4 × 6 ft"]]),
 ];
 
 async function main() {
@@ -43,7 +39,7 @@ async function main() {
   const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const rows = prods.map((p) => db.insert(t.products).values({
     slug: slug(p.name), name: p.name, brand: p.brand, categoryId: cid[p.c], summary: p.summary,
-    description: p.summary + " Every item is cleaned, tested and photographed before it leaves us, and comes with a condition checklist so returns are painless.",
+    description: p.summary + " Every piece is cleaned, checked and packed before it leaves us, and comes with a condition checklist so returns are painless.",
     specs: JSON.stringify(p.specs), imageUrl: `/img/${slug(p.name)}.jpg`, dailyCents: p.daily * 100, weeklyCents: p.weekly ? p.weekly * 100 : null, depositCents: p.deposit * 100, stock: p.stock, featured: p.featured,
   }).returning().get());
 
@@ -80,7 +76,7 @@ async function main() {
     }).returning().get();
     db.insert(t.bookingItems).values({ bookingId: b.id, productId: p.id, name: p.name, qty: 1, unitCents: unit, depositCents: p.depositCents }).run();
   }
-  const rv: [number, number, string][] = [[0, 5, "Spotless condition and the pickup took two minutes. Will rent again."], [1, 5, "Exactly as described. Saved me from buying gear I'd use once."], [4, 4, "Great quality. Battery was a little low at pickup, otherwise perfect."], [7, 5, "Set up in minutes. Our weekend away was easy."]];
+  const rv: [number, number, string][] = [[0, 5, "Looked stunning and the collection took two minutes. Will hire again."], [1, 5, "Exactly as pictured. Saved us buying decor we'd use once."], [4, 4, "Great quality and everyone asked where it was from."], [7, 5, "Set up in minutes. Our party looked amazing."]];
   for (const [pi, rating, body] of rv) db.insert(t.reviews).values({ productId: rows[pi].id, userId: people[1 + (pi % 5)].id, rating, body }).run();
   console.log(`Seeded ${rows.length} products. Admin: ${adminEmail} / (ADMIN_PASSWORD). Demo customer: demo@deshdom.test / DemoPass2026`);
 }
