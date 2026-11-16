@@ -3,7 +3,7 @@ export const SITE = {
   name: "Deshdom Rentals",
   short: "deshdom",
   legalName: "Deshdom Ventures Ltd",
-  tagline: "Rent it by the day. Return it when you're done.",
+  tagline: "Event decor and party accessories to hire.",
   phoneDisplay: "07553 082281",
   phoneTel: "+447553082281",
   whatsappChat: "https://wa.me/447553082281",
