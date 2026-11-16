@@ -1,5 +1,5 @@
 // Line-art product visuals by category (no external images needed; admins can set imageUrl to override).
-const tints: Record<string, string> = { "camera-video": "#dfe3ff", "audio-dj": "#ffe9a8", outdoor: "#d4efdc", events: "#ffd9d0", tools: "#e3e3df" };
+const tints: Record<string, string> = { "backdrops-arches": "#ffd0e6", "lighting-neon": "#ffe9a8", "tables-seating": "#d6ccff", "tableware-centrepieces": "#c5f0e6", "party-extras": "#ffd9b8" };
 const S = { fill: "none", stroke: "#0d1b1a", strokeWidth: 3, strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
 function Glyph({ cat }: { cat: string }) {
